@@ -1,0 +1,33 @@
+name: Deploy to GoDaddy
+on:
+  push:
+    branches: [ main ]  # Trigger deployment only on main branch pushes
+  workflow_dispatch:    # Allow manual deployment trigger
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      # Build steps (customize based on your project)
+      #- name: Set up Node.js
+      #  uses: actions/setup-node@v3
+      #  with:
+      #    node-version: '18'
+          
+      #- name: Install dependencies
+      #  run: npm install
+        
+      #- name: Build project
+      #  run: npm run build
+      
+      # Deploy to GoDaddy using FTP
+      - name: 📂 Deploy to GoDaddy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /public_html/O3Mini_001    # Adjust this path based on your hosting setup
+          local-dir: ./dist/          # Adjust this to your build output directory

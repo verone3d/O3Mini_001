@@ -30,4 +30,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /public_html/O3Mini_001/    # Adjust this path based on your hosting setup
-          local-dir: .       # Adjust this to your build output directory
+          local-dir: ./      # Adjust this to your build output directory
